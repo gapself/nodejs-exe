@@ -1,0 +1,22 @@
+{
+  "name": "nodejs-exe",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gapself/nodejs-exe.git"
+  },
+  "author": "gapself",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gapself/nodejs-exe/issues"
+  },
+  "homepage": "https://github.com/gapself/nodejs-exe#readme",
+  "dependencies": {
+    "lodash": "^4.17.10"
+  }
+}
