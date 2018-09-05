@@ -8,7 +8,15 @@ const os = require('os');
 const _ = require('lodash');
 const notes = require('./notes.js');
 
-//lowdash 1)you dont have to keep rewriting methods 2)well-tested, tried in production
+//npm install nodemon -g
+//nodemon app.js
+//ctrl+c => terminate
+//NPM/nodemon - responsible for watching out for changes & restarting the app when changes occur
+var filteredArray = _.uniq(['Andrew'])
+console.log(filteredArray); //[ 'Andrew', 1, 2, 3, 4 ]
+
+//npm install lodash save
+//lodash 1)you dont have to keep rewriting methods 2)well-tested, tried in production
 //_.isString
 console.log(_.isString(true)); //==> false-> (cause boolean's not a string
 console.log(_.isString('Andrew')); //true comes up cause Andrew is str
