@@ -8,6 +8,29 @@ const os = require('os');
 const _ = require('lodash');
 const notes = require('./notes.js');
 
+//dynami user input=makes useful scripts; node apps get input from the user in a lot of different ways
+//i can use command line arguments to pass data into my app inside of the app
+//how to get users input?
+//node app.js list - access to "list" command
+//console.log(process.argv); - argv- argument array; grab any information and make sth with it according to command used by the user
+var command = process.argv[2]; //command : any command we wanna use like "list"
+console.log('Command:',command);
+//node app.js remove --title='secrets' --> !! windows, use single quotes
+console.log(process.argv);
+
+if (command === 'add') {
+    console.log('Adding new note');
+} else if (command === 'list') {
+    console.log('Listing all notes');
+} else if (command === 'read'){
+    console.log('Reading note');
+} else if (command === 'remove'){
+    console.log("Removing note")
+} else {
+    console.log('Command not recognized');
+}
+
+
 //npm install nodemon -g
 //nodemon app.js
 //ctrl+c => terminate
