@@ -7,6 +7,12 @@ const fs = require('fs');
 const os = require('os');
 const _ = require('lodash');
 const notes = require('./notes.js');
+const yargs =require('yargs');
+
+//parsing - pain in my butt!! so use YARGS :D
+// npm install yargs@4.1.1..--save => why --save?=> without it yarg'll be installed into the node modules folder , but if we wipe(clean) that node modules later and run npm install - yargs wont get reinstalled
+const argv = yargs.argv;
+//var command = argv._[0];
 
 //dynami user input=makes useful scripts; node apps get input from the user in a lot of different ways
 //i can use command line arguments to pass data into my app inside of the app
@@ -15,17 +21,23 @@ const notes = require('./notes.js');
 //console.log(process.argv); - argv- argument array; grab any information and make sth with it according to command used by the user
 var command = process.argv[2]; //command : any command we wanna use like "list"
 console.log('Command:',command);
-//node app.js remove --title='secrets' --> !! windows, use single quotes
-console.log(process.argv);
+//node app.js remove --title='secrets' --> !! windows, use single quotes => it prents value&key
+
+//1)process,2)yargs; 1)node app.js add 2) node app.js encrypted; 1) add, 2)encrypted
+console.log('Process',process.argv);
+console.log('Yargs',argv);
 
 if (command === 'add') {
     console.log('Adding new note');
+    notes.addNote(argv.title,argv.body);
 } else if (command === 'list') {
-    console.log('Listing all notes');
+    notes.getAll()
 } else if (command === 'read'){
     console.log('Reading note');
+    notes.getNote(argv.title);
 } else if (command === 'remove'){
     console.log("Removing note")
+    notes.removeNote(argv.title);
 } else {
     console.log('Command not recognized');
 }
