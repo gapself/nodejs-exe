@@ -28,20 +28,27 @@ console.log('Process',process.argv);
 console.log('Yargs',argv);
 
 if (command === 'add') {
-    console.log('Adding new note');
-    notes.addNote(argv.title,argv.body);
+//    notes.addNote(argv.title,argv.body);
+    var note = notes.addNote(argv.title, argv.body);
+    if (note) {
+        console.log('Note created');
+        console.log('--');
+        console.log(`Title: ${note.title}`);
+        console.log(`Body: ${note.body}`);
+    } else {
+        console.log('Note title taken');
+    }
 } else if (command === 'list') {
-    notes.getAll()
+    notes.getAll();
 } else if (command === 'read'){
     console.log('Reading note');
     notes.getNote(argv.title);
 } else if (command === 'remove'){
-    console.log("Removing note")
+    console.log("Removing note");
     notes.removeNote(argv.title);
 } else {
     console.log('Command not recognized');
 }
-
 
 //npm install nodemon -g
 //nodemon app.js

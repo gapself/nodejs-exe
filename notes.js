@@ -1,27 +1,35 @@
 console.log('Starting notes.js');
 
 const fs = require('fs');
+//function that'll fetch notes from the file system
+var fetchNotes = () => {
+    try {
+        var notesString = fs.readFileSync('notes-data.json');
+        return JSON.parse(notesString);
+    } catch (e) {
+        return [];
+    }
+};
+
+var saveNotes = (notes) => {
+    fs.writeFileSync('notes-data.json', JSON.stringify(notes));
+};
+
 //addNote function which's in app.js
 //node app.js add --title=secrets --body="This is my secret"
 var addNote = (title,body) => {
-    var notes = [];
+    var notes = fetchNotes();
     var note = {
         title,
         body
     };
-//  loop through all of the notes and check if there're any new notes, if there're duplicates we're not gonna call 2 lines: if there arent than;;; notes.push(), etc if we run file that exists - catch'll never work
-// code that loads the file
-    try {
-        var notesString = fs.readFileSync('notes-data.json');
-        notes = JSON.parse(notesString);
-    } catch (e) {
-    }
-//return true-keep that array inside
-// code that saves the file
+
     var duplicatesNotes = notes.filter((note) => note.title === title); //return note.title...
+
     if (duplicatesNotes.length === 0 ) {
         notes.push(note);  //if re = to 0 then we wanna push notes
-        fs.writeFileSync('notes-data.json', JSON.stringify(notes));
+        saveNotes(notes);
+        return note;
     }
 };
 var getAll = () => {
